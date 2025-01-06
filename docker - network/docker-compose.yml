@@ -1,0 +1,21 @@
+version: "3"
+services:
+  apache:
+    image: httpd:alpine
+    ports:
+      - "8080:80"
+    networks:
+      - simpleweb_default
+  
+  postgres:
+    image: postgres
+    environment:
+      - POSTGRES_PASSWORD=secret
+    ports:
+      - "5432:5432"
+    networks:
+      - simpleweb_default
+
+networks:
+  simpleweb_default:
+    driver: bridge
